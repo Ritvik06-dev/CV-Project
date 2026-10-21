@@ -1,0 +1,30 @@
+# 4x super-resolution on the two photos bundled with scikit-learn (no download).
+# Left 75% of each photo for training, right 25% held out for testing (96 crops).
+# A small-scale stand-in for the paper's DF2K -> BSD100/Urban100 setup (Table 4).
+out_dir: runs/sr_sample
+data:
+  type: sr_sample
+  image_size: 64
+  scale: 4
+  test_frac: 0.25
+  n_train: 4000              # crops per "epoch"; crops are random each time
+model:
+  num_timesteps: 1000
+  condition: true
+  loss: l1
+  clip_denoised: true
+unet:
+  model_channels: 48
+  channel_mult: [1, 2, 2, 4]
+  num_res_blocks: 2
+  attention_resolutions: [8]
+  dropout: 0.0
+train:
+  iters: 8000
+  batch_size: 16
+  lr: 2.0e-4
+  ema_decay: 0.995
+  num_workers: 2
+  log_every: 100
+  preview_every: 2000
+  save_every: 2000

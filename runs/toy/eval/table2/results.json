@@ -1,0 +1,53 @@
+[
+  {
+    "run": "sde_1000",
+    "method": "sde",
+    "steps": 1000,
+    "schedule": "strided",
+    "trials": 5,
+    "n_images": 64,
+    "seconds": 97.2,
+    "psnr": 37.6956787109375,
+    "psnr_std": 0.27034610509872437,
+    "ssim": 0.9889739751815796,
+    "ssim_std": 0.00045658592716790736,
+    "lpips": null,
+    "lpips_std": null,
+    "pixel_std": 0.005491968709975481,
+    "fid": null
+  },
+  {
+    "run": "ode_1000",
+    "method": "ode",
+    "steps": 1000,
+    "schedule": "strided",
+    "trials": 5,
+    "n_images": 64,
+    "seconds": 127.7,
+    "psnr": 37.602176666259766,
+    "psnr_std": 0.0,
+    "ssim": 0.9919565320014954,
+    "ssim_std": 0.0,
+    "lpips": null,
+    "lpips_std": null,
+    "pixel_std": 0.0,
+    "fid": null
+  },
+  {
+    "run": "dual_3",
+    "method": "dual",
+    "steps": 3,
+    "schedule": "strided",
+    "trials": 5,
+    "n_images": 64,
+    "seconds": 0.9,
+    "psnr": 18.523040771484375,
+    "psnr_std": 0.01627868041396141,
+    "ssim": 0.47814521193504333,
+    "ssim_std": 0.0007026278181001544,
+    "lpips": null,
+    "lpips_std": null,
+    "pixel_std": 0.09439758956432343,
+    "fid": null
+  }
+]

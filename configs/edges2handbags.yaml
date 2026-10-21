@@ -1,0 +1,29 @@
+# Edges2Handbags edges -> photo at 64x64 (paper Table 6, Fig. 3, 7, 8).
+#   python scripts/download_data.py edges2handbags     (~8.6 GB archive)
+out_dir: runs/edges2handbags
+data:
+  type: aligned_ab
+  root: data/edges2handbags
+  image_size: 64
+  source: A                  # A (left half) = edges = y, B = photo = x0
+  flip: false
+model:
+  num_timesteps: 1000
+  condition: true
+  loss: l1
+  clip_denoised: true
+unet:
+  model_channels: 64
+  channel_mult: [1, 2, 2, 4]
+  num_res_blocks: 2
+  attention_resolutions: [16, 8]
+  dropout: 0.0
+train:
+  iters: 100000
+  batch_size: 32
+  lr: 1.0e-4
+  ema_decay: 0.999
+  num_workers: 4
+  log_every: 100
+  preview_every: 2000
+  save_every: 5000

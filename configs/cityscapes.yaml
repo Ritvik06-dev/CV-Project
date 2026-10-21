@@ -1,0 +1,32 @@
+# Cityscapes label -> photo (paper Tables 1, 2, 3, 5).
+# Data: pix2pix "cityscapes" release, each file is photo | label side by side.
+#   python scripts/download_data.py cityscapes
+# Paper resolution is 256. On a 6 GB GPU use data.image_size=128 for a first run.
+out_dir: runs/cityscapes
+data:
+  type: aligned_ab
+  root: data/cityscapes      # contains train/ and val/
+  image_size: 256
+  source: B                  # B (right half) = label map = y, A = photo = x0
+  flip: true
+model:
+  num_timesteps: 1000
+  condition: true
+  loss: l1
+  clip_denoised: true
+unet:
+  model_channels: 64
+  channel_mult: [1, 1, 2, 2, 4]
+  num_res_blocks: 2
+  attention_resolutions: [16]
+  dropout: 0.0
+train:
+  iters: 100000
+  batch_size: 4
+  grad_accum: 2
+  lr: 1.0e-4
+  ema_decay: 0.999
+  num_workers: 2
+  log_every: 100
+  preview_every: 2000
+  save_every: 5000

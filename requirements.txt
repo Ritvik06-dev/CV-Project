@@ -1,0 +1,7 @@
+torch>=2.1
+numpy
+pillow
+pyyaml
+# optional, only for LPIPS and FID (both pull in torchvision)
+# lpips
+# pytorch-fid

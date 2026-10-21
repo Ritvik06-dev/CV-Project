@@ -1,0 +1,28 @@
+# Synthetic label->image task. No download needed; trains in minutes.
+# Use it to check the whole pipeline before spending hours on real data.
+out_dir: runs/toy
+data:
+  type: synthetic
+  image_size: 32
+  n_train: 4000
+  n_test: 64
+model:
+  num_timesteps: 1000
+  condition: true        # concat y to x_t (official "concat" setting)
+  loss: l1               # official config uses L1
+  clip_denoised: true
+unet:
+  model_channels: 32
+  channel_mult: [1, 2, 2]
+  num_res_blocks: 1
+  attention_resolutions: [8]
+  dropout: 0.0
+train:
+  iters: 3000
+  batch_size: 32
+  lr: 2.0e-4
+  ema_decay: 0.995
+  num_workers: 0
+  log_every: 100
+  preview_every: 1000
+  save_every: 1000

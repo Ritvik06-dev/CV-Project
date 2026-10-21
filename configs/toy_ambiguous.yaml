@@ -1,0 +1,29 @@
+# Synthetic label->image task with 4 valid outputs per input (see data.Synthetic).
+# Tests whether the samplers produce one sharp valid output or a blurred average.
+out_dir: runs/toy_ambiguous
+data:
+  type: synthetic
+  image_size: 32
+  n_train: 4000
+  n_test: 64
+  ambiguous: true          # 4 equally valid stripe patterns per label map
+model:
+  num_timesteps: 1000
+  condition: true        # concat y to x_t (official "concat" setting)
+  loss: l1               # official config uses L1
+  clip_denoised: true
+unet:
+  model_channels: 32
+  channel_mult: [1, 2, 2]
+  num_res_blocks: 1
+  attention_resolutions: [8]
+  dropout: 0.0
+train:
+  iters: 6000
+  batch_size: 32
+  lr: 2.0e-4
+  ema_decay: 0.995
+  num_workers: 0
+  log_every: 100
+  preview_every: 1000
+  save_every: 1000
